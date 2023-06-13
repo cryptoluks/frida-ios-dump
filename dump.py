@@ -19,29 +19,6 @@ from scp import SCPClient
 from tqdm import tqdm
 import traceback
 
-IS_PY2 = sys.version_info[0] < 3
-if IS_PY2:
-    reload(sys)
-    sys.setdefaultencoding('utf8')
-
-script_dir = os.path.dirname(os.path.realpath(__file__))
-
-DUMP_JS = os.path.join(script_dir, 'dump.js')
-
-User = 'root'
-Password = 'alpine'
-Host = 'localhost'
-Port = 2222
-KeyFileName = None
-
-TEMP_DIR = tempfile.gettempdir()
-PAYLOAD_DIR = 'Payload'
-PAYLOAD_PATH = os.path.join(TEMP_DIR, PAYLOAD_DIR)
-file_dict = {}
-
-finished = threading.Event()
-
-
 def get_usb_iphone():
     Type = 'usb'
     if int(frida.__version__.split('.')[0]) < 12:
@@ -285,6 +262,29 @@ def start_dump(session, ipa_name):
         session.detach()
 
 def main():
+    
+    IS_PY2 = sys.version_info[0] < 3
+    if IS_PY2:
+        reload(sys)
+        sys.setdefaultencoding('utf8')
+
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+
+    DUMP_JS = os.path.join(script_dir, 'dump.js')
+
+    User = 'root'
+    Password = 'alpine'
+    Host = 'localhost'
+    Port = 2222
+    KeyFileName = None
+
+    TEMP_DIR = tempfile.gettempdir()
+    PAYLOAD_DIR = 'Payload'
+    PAYLOAD_PATH = os.path.join(TEMP_DIR, PAYLOAD_DIR)
+    file_dict = {}
+
+    finished = threading.Event()
+
     parser = argparse.ArgumentParser(description='frida-ios-dump (by AloneMonkey v2.0)')
     parser.add_argument('-l', '--list', dest='list_applications', action='store_true', help='List the installed apps')
     parser.add_argument('-o', '--output', dest='output_ipa', help='Specify name of the decrypted IPA')
