@@ -12,7 +12,7 @@ setup(
     package_data={'': ['dump.js']},
     entry_points={
         'console_scripts': [
-            'frida-ios-dump=dump.dump:main',
+            'frida-ios-dump=dump:main',
         ],
     },
     install_requires=parse_requirements('requirements.txt'),
