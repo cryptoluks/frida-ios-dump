@@ -15,4 +15,5 @@ setup(
             'frida-ios-dump=dump.dump:main',
         ],
     },
+    install_requires=parse_requirements('requirements.txt'),
 )
