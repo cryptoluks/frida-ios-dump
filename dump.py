@@ -1,8 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-# Author : AloneMonkey
-# blog: www.alonemonkey.com
 
 from __future__ import print_function
 from __future__ import unicode_literals
@@ -288,8 +284,7 @@ def start_dump(session, ipa_name):
     if session:
         session.detach()
 
-
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='frida-ios-dump (by AloneMonkey v2.0)')
     parser.add_argument('-l', '--list', dest='list_applications', action='store_true', help='List the installed apps')
     parser.add_argument('-o', '--output', dest='output_ipa', help='Specify name of the decrypted IPA')
@@ -360,3 +355,6 @@ if __name__ == '__main__':
         shutil.rmtree(PAYLOAD_PATH)
 
     sys.exit(exit_code)
+
+if __name__ == '__main__':
+    main()
